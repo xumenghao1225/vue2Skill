@@ -1,18 +1,12 @@
-<template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
-  </div>
-</template>
+<script>
+import { Calendar } from "element-ui";
+import DateTable from "@/components/HelloWorld.vue";
 
-<script lang="ts">
-import Vue from "vue";
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
-
-export default Vue.extend({
-  name: "HomeView",
+export default {
+  extends: Calendar,
+  name: "CMCalendar",
   components: {
-    HelloWorld,
+    DateTable,
   },
-});
+};
 </script>

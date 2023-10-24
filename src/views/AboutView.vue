@@ -1,5 +1,15 @@
+<script>
+import { Calendar } from "element-ui";
+import DateTable from "./HomeView.vue";
+
+export default {
+  extends: Calendar,
+  name: "CMCalendar",
+  components: {
+    DateTable,
+  },
+};
+</script>
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <Calendar> <DateTable></DateTable> </Calendar>
 </template>
