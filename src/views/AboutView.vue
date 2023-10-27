@@ -11,5 +11,7 @@ export default {
 };
 </script>
 <template>
-  <Calendar> <DateTable></DateTable> </Calendar>
+  <Calendar>
+    <DateTable></DateTable>
+  </Calendar>
 </template>

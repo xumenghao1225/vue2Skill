@@ -49,6 +49,7 @@
         @select="handleSelect"
       >
         <Menu-item index="/about">处理中心</Menu-item>
+        <Menu-item index="/pageOne">调出户表</Menu-item>
         <!-- <Submenu index="2">
           <template slot="title">我的工作台</template>
           <Menu-item index="2-1">选项1</Menu-item>
