@@ -33,7 +33,7 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
-, "src/components/const/Button.js"  ],
+, "src/components/const/Button.js", "src/store/modules/permission.js"  ],
   "exclude": [
     "node_modules"
   ]
