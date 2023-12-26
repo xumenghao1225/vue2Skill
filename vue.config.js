@@ -3,6 +3,7 @@ const path = require("path");
 module.exports = defineConfig({
   transpileDependencies: true,
   devServer: {
+    port: 9527,
     client: {
       overlay: false,
     },
