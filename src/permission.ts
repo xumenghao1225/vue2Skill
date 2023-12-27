@@ -2,6 +2,8 @@ import VabProgress from "nprogress";
 import "nprogress/nprogress.css";
 import Router from "./router";
 import { getAccessToken } from "@/utils/AccessToken";
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { name } = require("../package.json");
 const wihteList = ["login"];
 
 VabProgress.configure({
@@ -36,5 +38,6 @@ Router.beforeEach((to, from, next) => {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 Router.afterEach((to, from) => {
+  document.title = `${name} | ${to?.meta?.title}`;
   VabProgress.done();
 });

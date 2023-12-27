@@ -28,12 +28,13 @@ const routes: Array<requiredRouteConfig> = [
     path: "/",
     name: "Layout",
     component: Layout,
+    redirect: "/about",
     meta: { requiresAuth: true },
     children: [
       {
         path: "/about",
         name: "about",
-        meta: { requiresAuth: true },
+        meta: { title: "日历", requiresAuth: true, isMenu: true },
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
@@ -43,7 +44,17 @@ const routes: Array<requiredRouteConfig> = [
       {
         path: "/pageOne",
         name: "pageOne",
-        meta: { title: "调出户表", requiresAuth: true },
+        meta: { title: "调出户表", requiresAuth: true, isMenu: true },
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () =>
+          import(/* webpackChunkName: "about" */ "@/views/pageOne.vue"),
+      },
+      {
+        path: "/dashboard",
+        name: "dashboard",
+        meta: { title: "主页", requiresAuth: true, isMenu: true },
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.

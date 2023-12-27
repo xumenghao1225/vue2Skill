@@ -73,6 +73,8 @@
 
 <script>
 import { Menu, MenuItem, Aside, Main, Button } from "element-ui";
+import router from "@/router";
+console.log(router.getRoutes());
 export default {
   components: {
     elMenu: Menu,
