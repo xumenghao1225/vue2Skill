@@ -20,8 +20,14 @@
       .el-menu-item {
         @include bg-color;
         &:hover {
-          @include bg-color(#e6d212);
-          color: #000;
+          @include bg-color(hsl(186, 7%, 28%));
+          color: #fe8307;
+          &.is-active {
+            background-color: hsl(186, 7%, 28%);
+          }
+          i {
+            color: #fe8307;
+          }
         }
       }
     }
@@ -39,7 +45,7 @@
     <!-- 菜单 -->
     <Aside style="width: 200px">
       <el-menu
-        :default-active="activeIndex"
+        :default-active="currentRoute"
         class="Menu-demo"
         mode="vertical"
         width="200px"
@@ -48,9 +54,14 @@
         active-color="#f5e729"
         @select="handleSelect"
       >
-        <Menu-item index="/about">处理中心</Menu-item>
-        <Menu-item index="/pageOne">调出户表</Menu-item>
+        <template v-for="item in MenuList">
+          <Menu-item :key="item.path" :index="item.path">
+            <i class="el-icon-menu"></i>
+            <span slot="title">{{ item.title }}</span>
+          </Menu-item>
+        </template>
         <!-- <Submenu index="2">
+                  el-icon-menu
           <template slot="title">我的工作台</template>
           <Menu-item index="2-1">选项1</Menu-item>
           <Menu-item index="2-2">选项2</Menu-item>
@@ -71,30 +82,42 @@
   </div>
 </template>
 
-<script>
-import { Menu, MenuItem, Aside, Main, Button } from "element-ui";
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
+import { Menu, MenuItem, Aside, Main } from "element-ui";
 import router from "@/router";
-console.log(router.getRoutes());
-export default {
+@Component({
+  name: "layout",
   components: {
     elMenu: Menu,
     MenuItem,
-    // Submenu,
     Aside,
     Main,
   },
-  extends: {
-    Button: Button,
-  },
-  data() {
-    return {
-      activeIndex: "1",
-    };
-  },
-  methods: {
-    handleSelect(key, keyPath) {
-      console.log(key, keyPath);
-    },
-  },
-};
+})
+export default class Layout extends Vue {
+  activeIndex = "/dashboard";
+
+  get MenuList() {
+    const Menu = router
+      .getRoutes()
+      .filter((item) => item.meta.isMenu)
+      .flatMap(({ meta, path, name }) => {
+        return {
+          path,
+          name,
+          title: meta.title,
+        };
+      });
+    return Menu;
+  }
+
+  get currentRoute() {
+    return this.$route.path;
+  }
+
+  handleSelect() {
+    console.log(this.currentRoute);
+  }
+}
 </script>
