@@ -1,5 +1,5 @@
 <style scoped lang="scss">
-@mixin bg-color($color: #0094ff) {
+@mixin bg-color($color: #304156) {
   background-color: $color;
 }
 .layout-container {
@@ -19,15 +19,16 @@
 
       .el-menu-item {
         @include bg-color;
+        color: #fff;
         &:hover {
-          @include bg-color(hsl(186, 7%, 28%));
-          color: #fe8307;
-          &.is-active {
-            background-color: hsl(186, 7%, 28%);
-          }
-          i {
-            color: #fe8307;
-          }
+          @include bg-color(#263445);
+          color: #f5f5f5;
+        }
+        &.is-active {
+          background-color: #263445;
+        }
+        i {
+          color: #f5f5f5;
         }
       }
     }
@@ -50,7 +51,7 @@
         mode="vertical"
         width="200px"
         router
-        active-text-color="#fe8307"
+        active-text-color="#fFF"
         active-color="#f5e729"
         @select="handleSelect"
       >
