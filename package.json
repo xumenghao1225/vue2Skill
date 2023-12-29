@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "npm install && vue-cli-service serve",
+    "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "commit": "git-cz",
+    "svgo": "svgo -f src/icons/svg --config=src/icons/svgo.yml",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -43,6 +44,8 @@
     "prettier": "^2.4.1",
     "sass": "^1.32.13",
     "sass-loader": "^10.1.1",
+    "svg-sprite-loader": "^6.0.11",
+    "svgo": "^3.1.0",
     "typescript": "~4.5.5",
     "vue-template-compiler": "^2.6.14"
   },
