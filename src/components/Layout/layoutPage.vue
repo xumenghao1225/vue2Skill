@@ -53,7 +53,6 @@
         router
         active-text-color="#fFF"
         active-color="#f5e729"
-        @select="handleSelect"
       >
         <template v-for="item in MenuList">
           <Menu-item :key="item.path" :index="item.path">
@@ -115,10 +114,6 @@ export default class Layout extends Vue {
 
   get currentRoute() {
     return this.$route.path;
-  }
-
-  handleSelect() {
-    console.log(this.currentRoute);
   }
 }
 </script>

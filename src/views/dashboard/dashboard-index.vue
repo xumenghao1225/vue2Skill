@@ -8,7 +8,7 @@
           <div class="card-panel-icon-wrapper" style="margin-top: -10px">
             <el-image
               style="width: 200px; height: 90px"
-              src="https://file.moyublog.com/d/file/2021-01-03/c7eec0c537a7cdb8adb257ed0be24f71.jpg"
+              :src="imgSrc"
             ></el-image>
           </div>
           <div class="card-panel-description">
@@ -90,10 +90,17 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-@Component
+import CountTo from "vue-count-to";
+@Component({
+  name: "Dashboard",
+  components: {
+    CountTo,
+  },
+})
 export default class Dashboard extends Vue {
   date: Date = new Date();
   nickname = "系统管理员";
+  imgSrc = require("@/assets/dashboard.jpg");
   get helloWorld() {
     const hours = this.date.getHours();
     if (hours >= 6 && hours < 8) {
@@ -111,27 +118,6 @@ export default class Dashboard extends Vue {
     }
   }
 }
-
-// import { mapGetters } from "vuex";
-// import GithubCorner from "@/components/GithubCorner";
-// import PanThumb from "@/components/PanThumb";
-// import CountTo from "vue-count-to";
-// import TodoList from "./components/TodoList";
-// export default {
-//   name: "dashBoard",
-//   // components: { GithubCorner, PanThumb, CountTo, TodoList },
-//   components: { CountTo },
-//   data() {
-//     return {
-//       updateLogActiveName: "1",
-//       contactActiveName: "1",
-//       documentActiveName: "1",
-//     };
-//   },
-//   mounted() {
-//     console.log("dashboard", this);
-//   },
-// };
 </script>
 
 <style lang="scss" scoped>
