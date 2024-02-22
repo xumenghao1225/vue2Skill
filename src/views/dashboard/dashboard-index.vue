@@ -5,7 +5,7 @@
     <el-row :gutter="40" class="card-panel-col">
       <el-col :xs="24" :span="12" :lg="6">
         <div class="card-panel">
-          <div class="card-panel-icon-wrapper" style="margin-top: -10px">
+          <div class="card-panel-icon-wrapper" style="padding: 0px">
             <el-image
               style="width: 200px; height: 90px"
               :src="imgSrc"
@@ -73,18 +73,18 @@
       </el-col>
     </el-row>
 
-    <el-row :gutter="40">
+    <!-- <el-row :gutter="40">
       <el-col :span="6" :xs="24">
         <el-card class="technology-stack">
           <div slot="header" class="clearfix">
             <span>计划事项</span>
           </div>
           <div style="font-size: 14px">
-            <!-- <todo-list /> -->
+            <todo-list />
           </div>
         </el-card>
       </el-col>
-    </el-row>
+    </el-row> -->
   </div>
 </template>
 
@@ -184,6 +184,11 @@ export default class Dashboard extends Vue {
   }
 
   .card-panel {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
     height: 108px;
     cursor: pointer;
     font-size: 12px;
@@ -233,23 +238,17 @@ export default class Dashboard extends Vue {
     }
 
     .card-panel-icon-wrapper {
-      float: left;
-      margin: 14px 0 0 14px;
       padding: 16px;
       transition: all 0.38s ease-out;
       border-radius: 6px;
     }
 
     .card-panel-icon {
-      float: left;
       font-size: 48px;
     }
 
     .card-panel-description {
-      float: right;
       font-weight: bold;
-      margin: 26px;
-      margin-left: 0px;
 
       .card-panel-text {
         line-height: 18px;
