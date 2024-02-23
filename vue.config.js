@@ -7,6 +7,7 @@ function resolve(dir) {
 }
 module.exports = defineConfig({
   transpileDependencies: true,
+  productionSourceMap: false,
   devServer: {
     port: 9527,
     client: {

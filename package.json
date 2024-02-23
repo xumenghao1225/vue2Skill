@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --mode production",
     "lint": "vue-cli-service lint",
     "commit": "git-cz",
     "svgo": "svgo -f src/icons/svg --config=src/icons/svgo.yml",
