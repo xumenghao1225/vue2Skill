@@ -48,38 +48,36 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "Page-404",
-  data() {
-    return {
-      jumpTime: 5,
-      oops: "抱歉!",
-      headline: "当前页面不存在...",
-      info: "请检查您输入的网址是否正确，或点击下面的按钮返回首页。",
-      btn: "返回首页",
-      timer: 0,
-    };
-  },
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
+@Component({
+  name: "Page404",
+})
+export default class Page404 extends Vue {
+  jumpTime = 5;
+  oops = "抱歉!";
+  headline = "当前页面不存在...";
+  info = "请检查您输入的网址是否正确，或点击下面的按钮返回首页。";
+  btn = "返回首页";
+  timer = 0;
+
   mounted() {
     this.timeChange();
-  },
+  }
   beforeDestroy() {
     clearInterval(this.timer);
-  },
-  methods: {
-    timeChange() {
-      this.timer = setInterval(() => {
-        if (this.jumpTime) {
-          this.jumpTime--;
-        } else {
-          this.$router.push({ path: "/" });
-          clearInterval(this.timer);
-        }
-      }, 1000);
-    },
-  },
-};
+  }
+  timeChange() {
+    this.timer = setInterval(() => {
+      if (this.jumpTime) {
+        this.jumpTime--;
+      } else {
+        this.$router.push({ path: "/" });
+        clearInterval(this.timer);
+      }
+    }, 1000);
+  }
+}
 </script>
 
 <style lang="scss" scoped>

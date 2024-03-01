@@ -48,38 +48,35 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "Page-401",
-  data() {
-    return {
-      jumpTime: 5,
-      oops: "抱歉!",
-      headline: "您没有操作权限...",
-      info: "当前帐号没有操作权限,请联系管理员。",
-      btn: "返回",
-      timer: 0,
-    };
-  },
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
+@Component({
+  name: "Page401",
+})
+export default class Page401 extends Vue {
+  jumpTime = 5;
+  oops = "抱歉!";
+  headline = "您没有操作权限...";
+  info = "当前帐号没有操作权限,请联系管理员。";
+  btn = "返回";
+  timer = 0;
   mounted() {
     this.timeChange();
-  },
+  }
   beforeDestroy() {
     clearInterval(this.timer);
-  },
-  methods: {
-    timeChange() {
-      this.timer = setInterval(() => {
-        if (this.jumpTime) {
-          this.jumpTime--;
-        } else {
-          this.$router.push({ path: "/" });
-          clearInterval(this.timer);
-        }
-      }, 1000);
-    },
-  },
-};
+  }
+  timeChange() {
+    this.timer = setInterval(() => {
+      if (this.jumpTime) {
+        this.jumpTime--;
+      } else {
+        this.$router.push({ path: "/" });
+        clearInterval(this.timer);
+      }
+    }, 1000);
+  }
+}
 </script>
 
 <style lang="scss" scoped>
