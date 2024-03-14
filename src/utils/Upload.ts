@@ -26,7 +26,7 @@ export class UpLoadHandle {
     const fileChunks: chunkFile[] = [];
     const fileHash = await UpLoadHandle.getFilename(file);
     const { lostHash } = await UpLoadHandle.preUpload(file, fileHash);
-    debugger;
+
     if (file.size < this.chunkSize) {
       return [
         {
@@ -37,17 +37,13 @@ export class UpLoadHandle {
       ];
     }
     for (let cur = 0, chunkIndex = 0; cur < file.size; cur += size) {
-      if (lostHash.includes(chunkIndex.toString())) {
-        chunkIndex++;
-        continue;
-      }
       fileChunks.push({
         hash: (chunkIndex++).toString(),
         chunk: file.slice(cur, cur + size),
         fileHash,
       });
     }
-    return fileChunks;
+    return fileChunks.filter((item) => !lostHash.includes(item.hash));
   }
 
   private static preUpload(File: File, filehash: string): Promise<checkpoint> {

@@ -57,7 +57,6 @@ export default class upLoad extends Vue {
 
   async preUpLoad(file: File) {
     const fileChunks = await UpLoadHandle.splitFileChunk(file);
-    debugger;
     let pool: Promise<Response>[] = []; //Concurrent pool
     let max = 5; //Maximum concurrency
     console.log(fileChunks);
