@@ -43,6 +43,18 @@ const routes: Array<requiredRouteConfig> = [
             /* webpackChunkName: "about" */ "@/views/dashboard/dashboard-index.vue"
           ),
       },
+      {
+        path: "/upload",
+        name: "upload",
+        meta: { title: "文件上传", requiresAuth: true, isMenu: true },
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () =>
+          import(
+            /* webpackChunkName: "upload" */ "@/views/upload/upload-index.vue"
+          ),
+      },
     ],
   },
   {
