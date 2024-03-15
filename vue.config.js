@@ -53,7 +53,7 @@ module.exports = defineConfig({
     },
     plugins: [
       new CleanWebpackPlugin({
-        cleanOnceBeforeBuildPatterns: ["!dist/dll"],
+        cleanOnceBeforeBuildPatterns: ["dist/dll"],
       }),
       // new HtmlWebpack({
       //   filename: "index.html",
@@ -64,15 +64,14 @@ module.exports = defineConfig({
       //   inlineSource: ".(js|css)$",
       //   inject: "body",
       // }),
-      new PreloadWebpackPlugin({
-        // it can improve the speed of the first screen, it is recommended to turn on preload
-        rel: "preload",
-        // to ignore runtime.js
-        // https://github.com/vuejs/vue-cli/blob/dev/packages/@vue/cli-service/lib/config/app.js#L171
-        fileBlacklist: [/\.map$/, /hot-update\.js$/, /runtime\..*\.js$/],
-        include: "initial",
-        excludeHtmlNames: ["script"],
-      }),
+      // new PreloadWebpackPlugin({
+      //   // it can improve the speed of the first screen, it is recommended to turn on preload
+      //   rel: "preload",
+      //   // to ignore runtime.js
+      //   // https://github.com/vuejs/vue-cli/blob/dev/packages/@vue/cli-service/lib/config/app.js#L171
+      //   fileBlacklist: [/\.map$/, /hot-update\.js$/, /runtime\..*\.js$/],
+      //   include: "initial",
+      // }),
       new webpack.DllReferencePlugin({
         context: __dirname,
         manifest: path.join(__dirname, DllConfig.dllPath, `vue.manifest.json`), // 只需要这个映射json即可
@@ -87,8 +86,10 @@ module.exports = defineConfig({
       }),
     ],
     externals: {
-      elemetUI: "element-ui",
-      Vue: "vue",
+      // "element-ui": "ELEMENT",
+      // "Vue": "Vue",
+      // "vue-router": "Vue-Router",
+      // "vuex": "Vuex",
     },
     module: {
       noParse: /node_modules\/(element-ui\.js)/,

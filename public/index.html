@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
+    <link href="/dll/vue.dll.js" rel="preload" as="script">
+    <link href="/dll/elementUI.dll.js" rel="preload" as="script">
   </head>
   <body>
     <noscript>
@@ -13,7 +15,5 @@
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
-    <!-- <script defer src="/dll/vendors.dll.js"></script>
-    <script defer src="/dll/elementUI.dll.js"></script> -->
   </body>
 </html>
