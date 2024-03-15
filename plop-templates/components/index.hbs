@@ -1,0 +1,19 @@
+{{#if style}}
+<style lang="scss" scoped></style>
+{{/if}}
+
+{{#if script}}
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
+@Component({
+  name: "{{ properCase name }}",
+})
+export default class {{ properCase name }} extends Vue {}
+</script>
+{{/if}}
+
+{{#if template}}
+<template>
+  <div />
+</template>
+{{/if}}
