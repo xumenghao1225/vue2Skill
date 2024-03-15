@@ -8,7 +8,7 @@
           <div class="card-panel-icon-wrapper" style="padding: 0px">
             <el-image
               style="width: 200px; height: 90px"
-              :src="imgSrc"
+              src="~/assets/dashboard.jpg"
             ></el-image>
           </div>
           <div class="card-panel-description">

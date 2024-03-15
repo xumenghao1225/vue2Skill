@@ -5,7 +5,7 @@
   "scripts": {
     "dll": "webpack --config webpack.dll.config.js ",
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --mode production --no-clean",
+    "build": "vue-cli-service build --mode production --report",
     "lint": "vue-cli-service lint",
     "commit": "git-cz",
     "svgo": "svgo -f src/icons/svg --config=src/icons/svgo.yml",
