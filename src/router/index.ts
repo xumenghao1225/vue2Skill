@@ -55,6 +55,13 @@ const routes: Array<requiredRouteConfig> = [
             /* webpackChunkName: "upload" */ "@/views/upload/upload-index.vue"
           ),
       },
+      {
+        path: "/download",
+        name: "download",
+        meta: { title: "文件下载", requiresAuth: true, isMenu: true },
+        component: () =>
+          import(/* webpackChunkName: "upload" */ "@/views/downLoad/index.vue"),
+      },
     ],
   },
   {
