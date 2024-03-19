@@ -1,14 +1,19 @@
 <template>
   <div class="dashboard-container">
-    <!-- <github-corner class="github-corner" /> -->
-    <el-row :gutter="40" class="panel-group"> </el-row>
+    <el-row :gutter="40" class="panel-group" gap="12">
+      <el-col :xs="24" :span="24" :lg="24" class="card-panel-col">
+        <el-card shadow="never" :body-style="bodyStyle">
+          {{ helloWorld }}
+        </el-card>
+      </el-col>
+    </el-row>
     <el-row :gutter="40" class="card-panel-col">
       <el-col :xs="24" :span="12" :lg="6">
         <div class="card-panel">
           <div class="card-panel-icon-wrapper" style="padding: 0px">
             <el-image
               style="width: 200px; height: 90px"
-              src="~/assets/dashboard.jpg"
+              :src="imgSrc"
             ></el-image>
           </div>
           <div class="card-panel-description">
@@ -72,19 +77,6 @@
         </div>
       </el-col>
     </el-row>
-
-    <!-- <el-row :gutter="40">
-      <el-col :span="6" :xs="24">
-        <el-card class="technology-stack">
-          <div slot="header" class="clearfix">
-            <span>计划事项</span>
-          </div>
-          <div style="font-size: 14px">
-            <todo-list />
-          </div>
-        </el-card>
-      </el-col>
-    </el-row> -->
   </div>
 </template>
 
@@ -101,16 +93,19 @@ export default class Dashboard extends Vue {
   date: Date = new Date();
   nickname = "系统管理员";
   imgSrc = require("@/assets/dashboard.jpg");
+  bodyStyle = {
+    padding: "30px 20px",
+  };
   get helloWorld() {
     const hours = this.date.getHours();
     if (hours >= 6 && hours < 8) {
       return "晨起披衣出草堂，轩窗已自喜微凉🌅！";
     } else if (hours >= 8 && hours < 12) {
-      return "上午好，" + this.nickname + "！";
+      return "😀上午好，" + this.nickname + "！";
     } else if (hours >= 12 && hours < 18) {
-      return "下午好，" + this.nickname + "！";
+      return "🕒下午好，" + this.nickname + "！";
     } else if (hours >= 18 && hours < 24) {
-      return "晚上好，" + this.nickname + "！";
+      return "🌙晚上好，" + this.nickname + "！";
     } else if (hours >= 0 && hours < 6) {
       return "偷偷向银河要了一把碎星，只等你闭上眼睛撒入你的梦中，晚安🌛！";
     } else {
@@ -125,62 +120,11 @@ export default class Dashboard extends Vue {
   padding: 24px;
   background-color: rgb(240, 242, 245);
   position: relative;
-
-  .project-brief-introduction {
-    .el-divider--horizontal {
-      margin: 16px 0;
+  .el-row {
+    margin-bottom: 20px;
+    &:last-child {
+      margin-bottom: 0;
     }
-
-    .content {
-      line-height: 20px;
-    }
-
-    margin-bottom: 24px;
-  }
-
-  .technology-stack {
-    margin-bottom: 24px;
-  }
-
-  .github-corner {
-    position: absolute;
-    top: 0px;
-    border: 0;
-    right: 0;
-    z-index: 99;
-  }
-
-  .box-center {
-    margin: 0 auto;
-    display: table;
-  }
-
-  .user-profile {
-    .box-center {
-      padding-top: 10px;
-    }
-
-    .user-role {
-      padding-top: 10px;
-      font-weight: 400;
-      font-size: 14px;
-    }
-
-    .box-social {
-      padding-top: 30px;
-
-      .el-table {
-        border-top: 1px solid #dfe6ec;
-      }
-    }
-
-    .user-follow {
-      padding-top: 20px;
-    }
-  }
-
-  .card-panel-col {
-    margin-bottom: 12px;
   }
 
   .card-panel {
