@@ -57,9 +57,11 @@ export class FileUploader {
     const totalChunks = Math.ceil(
       FileUploader.file.size / FileUploader.chunkSize
     );
-    const fileHash = await FileUploader.getFilename(FileUploader.file);
+    const { chunkName: fileHash, filename } = await FileUploader.getFilename(
+      FileUploader.file
+    );
     const { lostHash } = await FileUploader.VerifyChunkExists(
-      FileUploader.file,
+      filename,
       fileHash
     );
     for (let i = 0, cur = 0; i < totalChunks; i++) {
@@ -86,14 +88,19 @@ export class FileUploader {
    * @param {File} file 文件对象
    * @returns 文件名
    */
-  private static async getFilename(file: File): Promise<string> {
+  private static async getFilename(
+    file: File
+  ): Promise<{ filename: string; chunkName: string }> {
     // 获取文件后缀名
     const extension = file.name.split(".").pop();
-
+    console.log(file.name);
     // 获取文件摘要
     const filename = await FileUploader.calculateHash(file);
 
-    return `${filename}.${extension}`;
+    return {
+      chunkName: `${filename}.${extension}`,
+      filename: file.name,
+    };
   }
 
   /**
@@ -122,11 +129,11 @@ export class FileUploader {
    * @returns: checkpoint
    */
   private static VerifyChunkExists(
-    File: File,
+    filename: string,
     filehash: string
   ): Promise<checkpoint> {
     const params = JSON.stringify({
-      filename: File.name,
+      filename: filename,
       filehash,
     });
     return new Promise((resolve) => {
