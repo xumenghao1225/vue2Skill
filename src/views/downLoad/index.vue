@@ -7,57 +7,61 @@ import { Component, Vue } from "vue-property-decorator";
 })
 export default class DownLoad extends Vue {
   fileList = [{}];
-
-  // 锁屏函数
-  lockScreen() {
-    window.onmousemove = () => {
-      return false;
-    };
+  download(filename: string) {
+    fetch(
+      `http://localhost:3000/download?filename=${encodeURIComponent(filename)}`
+    )
+      .then((response) => {
+        // Check if response is successful
+        if (!response.ok) {
+          throw new Error("File download failed");
+        }
+        // Convert response to blob
+        return response.blob();
+      })
+      .then((blob) => {
+        // Create object URL from blob
+        const url = window.URL.createObjectURL(blob);
+        // Create a link element
+        const a = document.createElement("a");
+        // Set link's href to the object URL
+        a.href = url;
+        // Set link's download attribute to the desired filename
+        a.download = filename; // You can specify the filename here
+        // Append link to body
+        document.body.appendChild(a);
+        // Click the link to initiate download
+        a.click();
+        // Remove the link from the DOM
+        document.body.removeChild(a);
+        // Revoke the object URL to free up memory
+        window.URL.revokeObjectURL(url);
+      })
+      .catch((error) => {
+        console.error("Error downloading file:", error);
+        // Handle error here
+      });
   }
 
-  // 解锁屏函数
-  unlockScreen() {
-    // 移除之前添加的事件监听
-    window.removeEventListener(
-      "keydown",
-      (event) => {
-        event.preventDefault();
-      },
-      true
-    );
-
-    window.removeEventListener(
-      "mousedown",
-      (event) => {
-        event.preventDefault();
-      },
-      true
-    );
-
-    window.removeEventListener(
-      "touchstart",
-      (event) => {
-        event.preventDefault();
-      },
-      true
-    );
-  }
-
-  // 调用锁屏函数
-
-  testClick() {
-    console.log("testClick");
+  getFiles() {
+    fetch("http://localhost:3000/files")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        this.fileList = data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 }
 </script>
 
 <template>
   <div class="download-container-wrapper">
-    <div>
-      <el-button type="primary" @click="lockScreen">锁屏</el-button>
-      <el-button type="primary" @click="unlockScreen">解除锁屏</el-button>
-      <el-button type="primary" @click="testClick">testClick</el-button>
-      <el-table :data="fileList" style="width: 100%"></el-table>
-    </div>
+    <el-button @click="download('chromedriver-win64.zip')"
+      >chromedriver-win64.zip</el-button
+    >
+    <el-button @click="getFiles">getFiles</el-button>
   </div>
 </template>

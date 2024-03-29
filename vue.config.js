@@ -1,6 +1,6 @@
 const { defineConfig } = require("@vue/cli-service");
 const webpack = require("webpack");
-const PreloadWebpackPlugin = require("@vue/preload-webpack-plugin");
+// const PreloadWebpackPlugin = require("@vue/preload-webpack-plugin");
 // const HtmlWebpack = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const path = require("path");
@@ -128,6 +128,10 @@ module.exports = defineConfig({
           use: ["thread-loader", "cache-loader", "url-loader"],
         },
       ],
+    },
+    cache: {
+      type: "filesystem",
+      allowCollectingMemory: true,
     },
   },
   chainWebpack(config) {
