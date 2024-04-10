@@ -68,7 +68,7 @@ const routes: Array<requiredRouteConfig> = [
         meta: { title: "文件合并", requiresAuth: true, isMenu: true },
         component: () =>
           import(
-            /* webpackChunkName: "mergePdf" */ "@/views/mergePdf/index.vue"
+            /* webpackChunkName: "mergePdf" */ "@/views/mergePdf/merge-index.vue"
           ),
       },
     ],
