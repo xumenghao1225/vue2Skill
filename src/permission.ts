@@ -41,3 +41,5 @@ Router.afterEach((to, from) => {
   document.title = `${name} | ${to?.meta?.title}`;
   VabProgress.done();
 });
+
+console.log(process.env.VUE_APP_BASE_API);
